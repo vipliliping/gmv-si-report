@@ -1,0 +1,219 @@
+.row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+}
+
+.center {
+    text-align: center;
+}
+
+.top-filter {
+    margin-top: 10px;
+}
+
+.top-filter .col-md-1 {
+    padding: 0 5px;
+}
+
+.top-filter select {
+    height: 26px;
+}
+
+.top-filter input {
+    height: 26px;
+}
+
+.center-word {
+    margin-bottom: 10px;
+}
+
+.light-img{
+    font-size: 35px;
+}
+.light-word{
+    font-size: 12px;
+    visibility: hidden;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+}
+.light-img:hover .light-word{
+    visibility: unset;
+}
+
+.ms-drop {
+    top: 100%;
+    -moz-box-shadow: 0 4px 5px rgba(0, 0, 0, .15);
+    -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
+    background: #fff;
+    border: 1px solid #e4e7ed;
+    border-radius: 2px;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
+    margin: 5px 0;
+    white-space: nowrap;
+    min-width: 100px;
+    width: auto;
+}
+
+.ms-drop > ul {
+    -webkit-box-sizing: border-box;
+    border-right: 1px solid #e4e7ed;
+    box-sizing: border-box;
+    margin: 0;
+    overflow: auto;
+    padding: 6px 0;
+    vertical-align: top;
+}
+
+.ms-drop ul li {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #606266;
+    cursor: pointer;
+    font-size: 14px;
+    height: 34px;
+    line-height: 1.5;
+    outline: 0;
+    overflow: hidden;
+    padding: 8px 20px;
+    position: relative;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ms-drop ul li label {
+    cursor: pointer;
+}
+
+.ms-drop ul li label input {
+    /*display: none;*/
+}
+
+.ms-drop ul li.ms-select-all {
+    padding-left: 20px;
+}
+
+.ms-drop ul li.selected {
+    color: #409eff;
+}
+
+.ms-drop ul li:hover {
+    background-color: #f5f7fa;
+}
+
+div.jqx-datatable-load {
+    background-color: rgba(249, 250, 252, 0.5) !important;
+}
+
+div.jqx-widget-header {
+    background-color: #f9fafc;
+    border-color: #ebeef5;
+    color: #3d7ab7;
+}
+
+div.jqx-widget-content {
+    background-color: #f9fafc;
+    border-color: #ebeef5;
+}
+
+div.jqx-scrollbar-state-normal {
+    background-color: #f9fafc;
+}
+
+div.jqx-widget .jqx-grid-cell, div.jqx-widget .jqx-grid-column-header, div.jqx-widget .jqx-grid-group-cell {
+    border-color: #ebeef5;
+}
+
+.jqx-grid-table {
+    background-color: #f0f1f4;
+    border-bottom: 1px solid #ebeef5;
+    border-right: 1px solid #ebeef5;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.jqx-grid-table tbody tr:nth-child(even) td {
+    background-color: #f9fafc;
+}
+/*.jqx-grid-cell-wrap {
+     white-space: nowrap !important;
+}*/
+.jqx-grid-table tbody tr td {
+    color: #354052;
+    padding: 5px 0 3px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    position: relative;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    white-space: nowrap;
+    font-weight: normal;
+    font-size: 12px;
+    min-width: 50px;
+    line-height: 23px;
+    word-break: break-all;
+    padding-left: 10px;
+    overflow: hidden;
+    padding-right: 10px;
+}
+
+.jqx-grid-table tbody tr:nth-child(even):hover td {
+    background-color: #f9fafc;
+    color: #354052 !important;
+}
+
+.jqx-grid-table tbody tr:hover td {
+    background-color: #fff;
+    color: #354052 !important;
+}
+
+/* 胶囊按钮样式 */
+.capsule_content label {
+    display: inline-block;
+    padding: 3px 15px;
+    text-align: center;
+    font-size: 14px;
+    border: 1px solid #dcdfe6;
+    cursor: pointer;
+    background-color: #fff;
+    color: #606266;
+    margin-left: -5px;
+}
+
+.capsule_content label.active {
+    color: #fff;
+    border: 1px solid #409eff;
+    background-color: #409eff;
+}
+
+.capsule_content label.active:hover {
+    color: #fff;
+}
+
+.capsule_content label:hover {
+    color: #409eff;
+}
+
+.capsule_content label:first-child {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    margin-left: 0;
+}
+
+.capsule_content label:last-child {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.btn-info {
+    color: #fff;
+    background-color: #409eff;
+    border-color: #409eff;
+}

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" type="image/ico" href="static/img/favicon.ico">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
+    <title>伊利报表GMV/SI平台明细</title>
+    <base>
+    <link rel="stylesheet" type="text/css" href="static/plugins/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="static/plugins/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="static/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css">
+    <link rel="stylesheet" type="text/css" href="static/plugins/multiple-select-master/multiple-select.css">
+    <link rel="stylesheet" type="text/css" href="static/plugins/jqwidgets/styles/jqx.base.css">
+    <link rel="stylesheet" type="text/css" href="static/css/common.css">
+    <link rel="stylesheet" type="text/css" href="static/css/index.css">
+</head>
+<body>
+<div class="container-fluid">
+    <form action="gmv/plat/detail" method="post">
+        <input type="hidden" id="yili-token" name="yili-token" />
+        <input type="hidden" id="timeWD" name="timeWD" value="当日" />
+        <input type="hidden" id="PLSelectHidden" name="cates" value="all" />
+        <input type="hidden" id="PPSelectHidden" name="brands" value="all" />
+        <input type="hidden" id="SKUSelectHidden" name="skus" value="all" />
+        <input type="hidden" id="DWSelectHidden" name="ranks" value="all" />
+        <input type="hidden" id="PTSelectHidden" name="plats" value="all" />
+        <input type="hidden" id="DPSelectHidden" name="shops" value="all" />
+        <div class="row" style="margin-top: 15px;margin-bottom: 15px;padding: 0 5px;">
+            <button data-toggle="modal" type="button" data-target="#myModal" class="pull-right btn "
+                    style="z-index: 1000; background-color: transparent; font-size: 22px;color: #f6dc70;position: absolute;right: 10px;top: -5px;">
+                <i class="fa fa-lightbulb-o"></i></button>
+            <div class="col-md-1" style="padding-right: 4px;width: 9%">
+                <div class="form-group">
+                    <label for="date">日报日期</label>
+                    <input id="date" name="date" class="form-control input-sm form_datetime"
+                           style="height: 26px;" value="2017-07-15"/>
+                </div>
+            </div>
+            <div class="col-md-1"style="padding-right: 4px;width: 9%">
+                <div class="form-group">
+                    <label for="PLSelect">品类</label>
+                    <select id="PLSelect" class="multiple-select"></select>
+                </div>
+            </div>
+            <div class="col-md-1"style="padding-right: 4px;width: 9%">
+                <div class="form-group">
+                    <label for="PPSelect">品牌</label>
+                    <select id="PPSelect" class="multiple-select"></select>
+                </div>
+            </div>
+            <div class="col-md-1"style="padding-right: 4px;width: 9%">
+                <div class="form-group">
+                    <label for="SKUSelect">SKU</label>
+                    <select id="SKUSelect" class="multiple-select"></select>
+                </div>
+            </div>
+            <div class="col-md-1"style="padding-right: 4px;width: 9%">
+                <div class="form-group">
+                    <label for="DWSelect">段位</label>
+                    <select id="DWSelect" class="multiple-select"></select>
+                </div>
+            </div>
+            <div class="col-md-1"style="padding-right: 4px;width: 9%">
+                <div class="form-group">
+                    <label for="PTSelect">平台</label>
+                    <select id="PTSelect" class="multiple-select"></select>
+                </div>
+            </div>
+            <div class="col-md-1"style="padding-right: 4px;width: 9%">
+                <div class="form-group">
+                    <label for="DPSelect">店铺</label>
+                    <select id="DPSelect" class="multiple-select"></select>
+                </div>
+            </div>
+            <div class="col-md-1"style="padding-right: 4px;padding-left: 10px;width: 10%">
+                <div class="capsule_content" style="margin-top:24px;">
+                    <label class="capsule_btn gmv_si_btn active" data-value="gmv"><span>GMV</span></label>
+                    <label class="capsule_btn gmv_si_btn" data-value="si"><span>SI</span></label>
+                </div>
+            </div>
+            <div class="col-md-1"style="padding-right: 4px;padding-left: 4px;width: 15%">
+                <div class="capsule_content " style="margin-top:24px;">
+                    <label class="capsule_btn dmy_btn active" data-value="当日"><span>当日</span></label>
+                    <label class="capsule_btn dmy_btn" data-value="MTD"><span>MTD</span></label>
+                    <label class="capsule_btn dmy_btn" data-value="YTD"><span>YTD</span></label>
+                </div>
+            </div>
+            <div class="pull-right" style="margin-top: 25px;margin-right: 10px">
+                <label for="search"></label>
+                <button style="width:65px;height:26px;line-height: 26px;padding: 0 10px;" class="btn btn-info btn-sm"
+                        type="button" id="search"><i class="fa fa-search"></i>确定
+                </button>
+
+                <label for="returnBtn"></label>
+                <button id="returnBtn" style="width:65px;height:26px;line-height: 26px;padding: 0 10px;" class="btn btn-info btn-sm"
+                        type="button">返回
+                </button>
+            </div>
+        </div>
+        <div class="row center-word">
+            <div class="col-md-6 text-left ">
+                <span id="titleSpan" style="font-weight: 700;font-size: 20px;">GMV数据：平台视角明细表</span>
+            </div>
+            <div class="col-md-6 text-right">
+                数据截止时间：<span id="dataEndTime"
+                             style="font-weight: 700;font-size: 16px;margin-right:15px;"></span>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 15px;">
+            <div style="" class="col-md-12">
+
+                <div id="treegrid">
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript" language="javascript" src="static/plugins/jquery/1.11.0/jquery.min.js"></script>
+<script type="text/javascript" language="javascript" src="static/plugins/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" language="javascript"
+        src="static/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript" language="javascript"
+        src="static/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js" charset="UTF-8"></script>
+<script type="text/javascript" language="javascript"
+        src="static/plugins/multiple-select-master/multiple-select.js"></script>
+<script type="text/javascript" language="javascript" src="static/plugins/jqwidgets/jqxcore.js"></script>
+<script type="text/javascript" language="javascript" src="static/plugins/jqwidgets/jqxdata.js"></script>
+<script type="text/javascript" language="javascript" src="static/plugins/jqwidgets/jqxbuttons.js"></script>
+<script type="text/javascript" language="javascript" src="static/plugins/jqwidgets/jqxscrollbar.js"></script>
+<script type="text/javascript" language="javascript" src="static/plugins/jqwidgets/jqxdatatable.js"></script>
+<script type="text/javascript" language="javascript" src="static/plugins/jqwidgets/jqxtreegrid.js"></script>
+<script type="text/javascript" language="javascript" src="static/js/util/common.js"></script>
+<script type="text/javascript" language="javascript" src="static/js/util/jqxTreeGrid-util.js"></script>
+<script type="text/javascript" language="javascript" src="static/js/plat.js"></script>
+</body>
+</html>
