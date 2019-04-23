@@ -5,6 +5,12 @@ import com.beyond.yili.dao.OracleDao;
 import com.beyond.yili.report.yilireportweb.infra.YiliInfra;
 import com.beyond.yili.report.yilireportweb.util.YiliDataAuthEnum;
 import com.beyond.yili.util.RedisUtil;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,12 +23,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
+//import com.beyond.yili.dao.OracleDao;
+
+//import com.beyond.yili.dao.OracleDao;
 
 /**
  * @author vipliliping
@@ -36,8 +39,8 @@ public class YiliImpl implements YiliInfra {
     private String tokenUrl;
     @Autowired
     private OracleDao oracleDao;
-    private static String PJ_EC_SALES_GMV = "PJ_EC_SALES_GMV";
-    private static String PJ_EC_SALES_SI = "PJ_EC_SALES_SI";
+//    private static String PJ_EC_SALES_GMV = "PJ_EC_SALES_GMV";
+//    private static String PJ_EC_SALES_SI = "PJ_EC_SALES_SI";
     private static String[] PJ_EC_SALES_TABLE = {"PJ_EC_SALES_GMV", "PJ_EC_SALES_SI"};
 
     public String getUserIdByToken(String token) {
@@ -110,7 +113,7 @@ public class YiliImpl implements YiliInfra {
             if (result.get("W_BG_D.NAME") == null) {
                 result.put("W_BG_D.NAME", areaAuth);
             } else {
-                result.put("W_BG_D.NAME", (String) result.get("W_BG_D.NAME") + "," + areaAuth);
+                result.put("W_BG_D.NAME",result.get("W_BG_D.NAME") + "," + areaAuth);
             }
         }
 
@@ -129,19 +132,19 @@ public class YiliImpl implements YiliInfra {
             if (result.get("DM_SL_WAREHOUSE.WH_CODE") == null) {
                 result.put("DM_SL_WAREHOUSE.WH_CODE", "'" + warehouseAuth + "'");
             } else {
-                result.put("DM_SL_WAREHOUSE.WH_CODE", (String) result.get("DM_SL_WAREHOUSE.WH_CODE") + ",'" + warehouseAuth + "'");
+                result.put("DM_SL_WAREHOUSE.WH_CODE",result.get("DM_SL_WAREHOUSE.WH_CODE") + ",'" + warehouseAuth + "'");
             }
 
             if (result.get("DM_SL_WAREHOUSE_D.WH_CODE") == null) {
                 result.put("DM_SL_WAREHOUSE_D.WH_CODE", "'" + warehouseAuth + "'");
             } else {
-                result.put("DM_SL_WAREHOUSE_D.WH_CODE", (String) result.get("DM_SL_WAREHOUSE_D.WH_CODE") + ",'" + warehouseAuth + "'");
+                result.put("DM_SL_WAREHOUSE_D.WH_CODE",result.get("DM_SL_WAREHOUSE_D.WH_CODE") + ",'" + warehouseAuth + "'");
             }
 
             if (result.get("W_SL_WAREHOUSE_D.WH_CODE") == null) {
                 result.put("W_SL_WAREHOUSE_D.WH_CODE", "'" + warehouseAuth + "'");
             } else {
-                result.put("W_SL_WAREHOUSE_D.WH_CODE", (String) result.get("W_SL_WAREHOUSE_D.WH_CODE") + ",'" + warehouseAuth + "'");
+                result.put("W_SL_WAREHOUSE_D.WH_CODE", result.get("W_SL_WAREHOUSE_D.WH_CODE") + ",'" + warehouseAuth + "'");
             }
         }
 
@@ -217,7 +220,7 @@ public class YiliImpl implements YiliInfra {
                             whereStr = "( " + plTableStr + ".SALE_AREA_NAME='" + sArray[1] + "')";
                         }
                     } else {
-                        whereStr = (String) result.get(plTableStr + ".PLATFORM_SALE_AREA");
+                        whereStr =  result.get(plTableStr + ".PLATFORM_SALE_AREA");
                         if (sArray.length > 1 && !"".equals(sArray[1]) && !"所有".equals(sArray[1])) {
                             whereStr = whereStr + " or ( " + plTableStr + ".SALE_AREA_NAME='" + sArray[1] + "')";
                         }
